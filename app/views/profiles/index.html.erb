@@ -1,7 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <h1>[상단 네브바]</h1>
-
   <div class="grid">
     <div class="grid-box a">프로필 사진</div>
     <div class="grid-box b">자기소개</div>
@@ -10,8 +9,8 @@
     <div class="grid-box e">하는 게임</div>
   </div>
   
-<h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-  
+
+<h1>[--JQuery Tab Here-- 제이쿼리 탭 넣는 자리]</h1>
   <div class="box-container">
     <div class="row">
         <% @profiles.each do |profile| %>
@@ -34,13 +33,14 @@
             </div>
         <% end %>
     </div>
+
   </div>
 
 <br>
   
 <%= link_to 'New Profile', new_profile_path %>
-  
-  
+<%= link_to "홈으로", root_path %>
+
 <style>
     body {
       background-color: #FAFAFA;
