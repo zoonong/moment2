@@ -6,7 +6,6 @@ class PostsController < ApplicationController
   # GET /posts.json
   
   def mypage
-    
   end
   
   def index
