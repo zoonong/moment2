@@ -13,50 +13,28 @@
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
 
   <div class="box-container">
-    <% @boards.each do |board| %>
-      <!-- For Tablet, Desktop Layout -->
-        <div class="hidden-xs">
-            <div class="col-md-4 col-sm-6">
+    <div class="row">
+        <% @boards.each do |board| %>
+            <div class="col m4 l4">
                 <div class="box">
                   <img class="image" src="<%= board.picture %>">
                       <div class="padding">
                         <div class="buttons">
-                          <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span>'), board %>
-                          <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_board_path(board) %>
-                          <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), board, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          <%= link_to 'show', board %>
+                          <%= link_to 'edit', edit_board_path(board) %>
+                          <%= link_to 'delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
                         </div>
                         
                         <div class="hit">
-                          조회 <%= board.hit %>회 / 코멘트랑 좋아요 기능 / 게임 이름
+                          조회 <%= board.hit %>회 / 코멘트랑 좋아요 기능
                         </div>
                         <%= board.description %>
                       </div>
                 </div>
             </div>
-        </div>
-        
-      <!-- For Mobile -->
-        <div class="visible-xs">
-            <div class="box box-mobile">
-              <img class="image" src="<%= board.picture %>">
-                  <div class="padding">
-                      <div class="buttons">
-                        <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span>'), board %>
-                        <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_board_path(board) %>
-                        <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), board, method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </div>
-                      
-                      <div class="hit">
-                        조회 <%= board.hit %>회
-                      </div>
-                      <%= board.description %>
-                  </div>  
-            </div>
-        </div>      
-        
+        <% end %>
+    </div>
   </div>
-  
-  <% end %>
 
 <br>
 
