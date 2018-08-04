@@ -9,20 +9,19 @@
     <div class="grid-box e">하는 게임</div>
   </div>
   
-<h1>[--JQuery Tab Here-- 제이쿼리 탭 넣는 자리]</h1>
 
+<h1>[--JQuery Tab Here-- 제이쿼리 탭 넣는 자리]</h1>
   <div class="box-container">
-    <% @profiles.each do |profile| %>
-      <!-- For Tablet, Desktop Layout -->
-        <div class="hidden-xs">
-            <div class="col-md-4 col-sm-6">
+    <div class="row">
+        <% @profiles.each do |profile| %>
+            <div class="col m4 l4">
                 <div class="box">
                   <img class="image" src="<%= profile.picture %>">
                       <div class="padding">
                         <div class="buttons">
-                          <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span>'), profile %>
-                          <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_profile_path(profile) %>
-                          <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          <%= link_to 'show', profile %>
+                          <%= link_to 'edit', edit_profile_path(profile) %>
+                          <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
                         </div>
                         
                         <div class="hit">
@@ -32,34 +31,15 @@
                       </div>
                 </div>
             </div>
-        </div>
-        
-      <!-- For Mobile -->
-        <div class="visible-xs">
-            <div class="box box-mobile">
-              <img class="image" src="<%= profile.picture %>">
-                  <div class="padding">
-                      <div class="buttons">
-                        <%= link_to raw('<span class="glyphicon glyphicon-eye-open"></span>'), profile %>
-                        <%= link_to raw('<span class="glyphicon glyphicon-pencil"></span>'), edit_profile_path(profile) %>
-                        <%= link_to raw('<span class="glyphicon glyphicon-trash"></span>'), profile, method: :delete, data: { confirm: 'Are you sure?' } %>
-                      </div>
-                      
-                      <div class="hit">
-                        게임 이름
-                      </div>
-                      <%= profile.description %>
-                  </div>  
-            </div>
-        </div>   
-    <% end %>    
+        <% end %>
+    </div>
+
   </div>
 
 <br>
-
+  
 <%= link_to 'New Profile', new_profile_path %>
 <%= link_to "홈으로", root_path %>
-
 
 <style>
     body {
@@ -93,7 +73,7 @@
     .box .buttons{
       font-size: 2em;
     }
-
+  
     .box .buttons .glyphicon{
       color: black;
       margin-right: 0.3em;
@@ -115,9 +95,9 @@
       font-weight: bold;
       margin-bottom: 0.5em;
     }
-
-
-
+  
+  
+  
     .grid {
       display: grid;
       grid-template: 1fr 1fr / 2fr 6fr 1fr 1fr;
@@ -157,4 +137,5 @@
       grid-column-start: 2;
       grid-column-end: 5;
     }
-</style>
+    
+  </style>

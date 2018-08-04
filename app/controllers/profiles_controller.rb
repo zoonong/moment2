@@ -5,6 +5,8 @@ class ProfilesController < ApplicationController
   # GET /profiles.json
   def index
     @profiles = Profile.all
+  #  @profiles = Profile.where(:user => current_user.email)
+  #  @like = current_user.liked_posts
   end
   
   def board
