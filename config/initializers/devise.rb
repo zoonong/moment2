@@ -6,6 +6,7 @@ Devise.setup do |config|
   
   
   config.omniauth :facebook, ENV["Facebook_Key"], ENV["Facebook_Secret"]
+  config.omniauth :naver,    ENV["Naver_Key"], ENV["Naver_Secret"]
   
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 

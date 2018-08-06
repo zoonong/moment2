@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
 
-# for Facebook Login
+# for SNS  Login
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'omniauth-naver'
 
 gem 'figaro'
 
