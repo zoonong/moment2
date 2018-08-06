@@ -1,5 +1,12 @@
 source 'https://rubygems.org'
 
+# for SNS  Login
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-naver'
+
+gem 'figaro'
+
 gem 'bootstrap-sass', '~> 3.3.7'
 gem 'carrierwave'
 gem "rails_db", "1.6"
