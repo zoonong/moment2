@@ -22,10 +22,12 @@ class BoardsController < ApplicationController
   # GET /boards/new
   def new
     @board = Board.new
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # GET /boards/1/edit
   def edit
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # POST /boards
@@ -33,6 +35,7 @@ class BoardsController < ApplicationController
   def create
     @board = Board.new(board_params)
     @board.user = current_user
+    @board.category_id = params[:category_id]
     respond_to do |format|
       if @board.save
         format.html { redirect_to @board, notice: 'Board was successfully created.' }
@@ -47,6 +50,7 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
+    @board.category_id = params[:category_id]
     respond_to do |format|
       if @board.update(board_params)
         format.html { redirect_to @board, notice: 'Board was successfully updated.' }
