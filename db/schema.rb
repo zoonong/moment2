@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20180807201433) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
+
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
