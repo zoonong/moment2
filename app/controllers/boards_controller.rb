@@ -2,9 +2,16 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   # GET /boards
-  # GET /boards.json
+  # GET /boards.jsonc
   def index
-    @boards = Board.all
+  #  @boards = Board.all
+    if user_signed_in?
+      @boards = current_user.boards
+    #  @boards = Board.where(:user_id == current_user.id)
+    else
+      @boards = Board.all 
+    end
+  #  @like = current_user.liked_posts
   end
 
   # GET /boards/1
@@ -25,7 +32,7 @@ class BoardsController < ApplicationController
   # POST /boards.json
   def create
     @board = Board.new(board_params)
-
+    @board.user = current_user
     respond_to do |format|
       if @board.save
         format.html { redirect_to @board, notice: 'Board was successfully created.' }

@@ -11,19 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180802203257) do
+ActiveRecord::Schema.define(version: 20180804194740) do
 
   create_table "boards", force: :cascade do |t|
     t.text     "description"
     t.string   "picture"
     t.integer  "hit"
+    t.string   "user"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
+
+  add_index "boards", ["user_id"], name: "index_boards_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
     t.text     "content"
+    t.string   "user"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -32,6 +37,7 @@ ActiveRecord::Schema.define(version: 20180802203257) do
     t.text     "description"
     t.string   "picture"
     t.integer  "hit"
+    t.string   "user"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
