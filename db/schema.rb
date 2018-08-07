@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180806110314) do
     t.integer  "user_id"
   end
 
+
   add_index "boards", ["user_id"], name: "index_boards_on_user_id"
 
   create_table "identities", force: :cascade do |t|
@@ -34,6 +35,7 @@ ActiveRecord::Schema.define(version: 20180806110314) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
+
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
