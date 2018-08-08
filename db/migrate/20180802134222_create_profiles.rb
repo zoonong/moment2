@@ -4,6 +4,7 @@ class CreateProfiles < ActiveRecord::Migration
       t.text :description
       t.string :picture
       t.integer :hit
+      t.string :user
 
       t.timestamps null: false
     end

@@ -2,9 +2,16 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   # GET /boards
-  # GET /boards.json
+  # GET /boards.jsonc
   def index
-    @boards = Board.all
+  #  @boards = Board.all
+    if user_signed_in?
+      @boards = current_user.boards
+    #  @boards = Board.where(:user_id == current_user.id)
+    else
+      @boards = Board.all 
+    end
+  #  @like = current_user.liked_posts
   end
 
   # GET /boards/1
@@ -15,17 +22,20 @@ class BoardsController < ApplicationController
   # GET /boards/new
   def new
     @board = Board.new
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # GET /boards/1/edit
   def edit
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # POST /boards
   # POST /boards.json
   def create
     @board = Board.new(board_params)
-
+    @board.user = current_user
+    @board.category_id = params[:category_id]
     respond_to do |format|
       if @board.save
         format.html { redirect_to @board, notice: 'Board was successfully created.' }
@@ -40,6 +50,7 @@ class BoardsController < ApplicationController
   # PATCH/PUT /boards/1
   # PATCH/PUT /boards/1.json
   def update
+    @board.category_id = params[:category_id]
     respond_to do |format|
       if @board.update(board_params)
         format.html { redirect_to @board, notice: 'Board was successfully updated.' }
