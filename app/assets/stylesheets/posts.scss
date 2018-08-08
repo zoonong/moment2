@@ -4,20 +4,99 @@
 .container
 {
     text-align: center;
-    width: 1000px;
+    width: 1500px;
     margin: 0px auto;
     padding: 50px;
 
 }
-.content1
+.moment_logo
 {
     float: left;
-    margin-left: 200px;
+    grid-col-start: 2;
+    grid-col-end: 8;
 }
-.content2
+
+.login_box
 {
-    border: 1px solid #bbbbbb;
-    margin-right: 200px;
+    border: 6px solid #000000;
     padding: 50px;
     float: right;
+    border-radius: 15px;
+    background-color: #B5E0F8;
+    grid-col-start: 9;
+    grid-col-end: 12;
+}
+
+.signup_page
+{
+    border: 6px solid #000000;
+    padding: 50px;
+    border-radius: 15px;
+    background-color: #B5E0F8;
+    text-align: center;
+    grid-col-start: 5;
+    grid-col-end: 9;
+    
+}
+
+.devide 
+{
+  display: grid;
+  grid-template: 1fr / 4fr 4fr 4fr;
+}
+
+.blank_signup
+{
+    grid-col-start: 1;
+    grid-col-end: 5;
+}
+
+.blank_login_1
+{
+    grid-col-start: 1;
+    grid-col-end: 2;
+}
+
+.blank_login_2
+{
+    grid-col-start: 8;
+    grid-col-end: 9;
+}
+
+.devide_login
+{
+    display: grid;
+  grid-template: 1fr / 1fr 6fr 1fr 3fr 1fr;
+}
+
+.sign_inform
+{
+    border: 6px solid #000000;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    float: right;
+}
+
+.center_box
+{
+    border: 6px solid #000000;
+    padding: 50px;
+    border-radius: 15px;
+    text-align: center;
+    grid-col-start: 5;
+    grid-col-end: 9;
+}
+
+
+.blank_for_center
+{
+    grid-col-start: 1;
+    grid-col-end: 5;
+}
+
+.devide_center
+{
+  display: grid;
+  grid-template: 1fr/ 4fr 4fr 4fr;
 }

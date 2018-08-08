@@ -20,6 +20,10 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @post = Post.new
+    
+    # 해시태그세번 입력하도록 설정
+    # 동적으로 추가할 수 있도록 나중에 개선해보자
+    3.times { @post.hashtags.new }
   end
 
   # GET /posts/1/edit
@@ -30,7 +34,16 @@ class PostsController < ApplicationController
   # POST /posts.json
   def create
     @post = Post.new(post_params)
-
+    
+    # 해시태그 처리
+    3.times do |x|
+      # 날아오는 params 중 hashtag 관련 params를 받아온다. 인썸니아 강의 12:52
+      tag = hashtag_params[:hashtags_attributes]["#{x}"]["title"]
+      a = Hashtag.find_or_create_by(title: tag)
+      
+      @post.hashtags << a
+    end
+    
     respond_to do |format|
       if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
@@ -42,6 +55,10 @@ class PostsController < ApplicationController
     end
   end
 
+  def hashtag_params
+    params.require(:post).permit(hashtags_attributes: [:title])
+  end
+  
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
