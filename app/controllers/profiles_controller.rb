@@ -9,10 +9,6 @@ class ProfilesController < ApplicationController
   #  @like = current_user.liked_posts
   end
   
-  def board
-    @profiles = Profile.all
-  end
-
   # GET /profiles/1
   # GET /profiles/1.json
   def show
@@ -21,16 +17,19 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # GET /profiles/1/edit
   def edit
+    @categories = Category.all.map { |cat| [cat.name, cat.id] }
   end
 
   # POST /profiles
   # POST /profiles.json
   def create
     @profile = Profile.new(profile_params)
+    @profile.category_id = params[:category_id]
 
     respond_to do |format|
       if @profile.save
@@ -46,6 +45,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   # PATCH/PUT /profiles/1.json
   def update
+    @profile.category_id = params[:category_id]
     respond_to do |format|
       if @profile.update(profile_params)
         format.html { redirect_to @profile, notice: 'Profile was successfully updated.' }

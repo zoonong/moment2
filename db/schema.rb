@@ -11,9 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20180807201433) do
-
+ActiveRecord::Schema.define(version: 20180808115750) do
 
   create_table "boards", force: :cascade do |t|
     t.text     "description"
@@ -35,17 +33,6 @@ ActiveRecord::Schema.define(version: 20180807201433) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "hashtags", force: :cascade do |t|
-    t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "hashtags_posts", id: false, force: :cascade do |t|
-    t.integer "post_id",    null: false
-    t.integer "hashtag_id", null: false
-  end
-
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -55,7 +42,6 @@ ActiveRecord::Schema.define(version: 20180807201433) do
   end
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
-
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -72,7 +58,10 @@ ActiveRecord::Schema.define(version: 20180807201433) do
     t.string   "user"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "category_id"
   end
+
+  add_index "profiles", ["category_id"], name: "index_profiles_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
