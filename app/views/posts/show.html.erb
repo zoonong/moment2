@@ -13,10 +13,19 @@
     <strong>Content:</strong>
     <%= @post.content %>
   </p>
-
-  <%= link_to 'Edit', edit_post_path(@post) %> |
+  <!-- 해시태그 보여주는곳! -->
+  <p>
+    <strong>Hashtags:</strong><br>
+    <% @post.hashtags.each do |h| %>
+    <!-- 등록하지 않을경우 출력하지 않음-->
+      <% if h.title != "" %>
+        #<%= h.title %>
+      <% end %>
+    <% end %>
+  </p>
+    
+  <%= link_to 'Edit', edit_post_path(@post) %>
   <%= link_to 'Back', posts_path %>
   
-  </div>
   </div>
 </div>

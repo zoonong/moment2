@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806110314) do
+ActiveRecord::Schema.define(version: 20180807152357) do
 
   create_table "boards", force: :cascade do |t|
     t.text     "description"
@@ -19,6 +19,17 @@ ActiveRecord::Schema.define(version: 20180806110314) do
     t.integer  "hit"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "hashtags", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "hashtags_posts", id: false, force: :cascade do |t|
+    t.integer "post_id",    null: false
+    t.integer "hashtag_id", null: false
   end
 
   create_table "identities", force: :cascade do |t|
