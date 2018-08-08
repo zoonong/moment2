@@ -1,19 +1,25 @@
-<!-- view/devise/sessions/new.html.erb-->
-<!-- Main page Before Login-->
 <div class="container">
+<div class="devide_login">
+  <!-- view/devise/sessions/new.html.erb-->
+<!-- Main page Before Login-->
+
 <!-- 로고 -->
 
 <!-- 
   container, content1, content2 설정
   => app/stylesheets/posts.scss
 -->
-  <div class="content1">
-    <img src="/logo_moment.png" width="500" height="400" hspace="20">
+  <div class="blank_login_1"></div>
+
+  <div class="moment_logo">
+    <img src="/모멘트 로고.png" >
   </div>
   
+  <div class="blank_login_2"></div>
+
   <!-- 로그인 화면 -->
-  <div class="content2">
-    <h2>Moment</h2>
+  <div class="login_box">
+    <img src="/moment_word.png" hspace="20"><br>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="field">
         <%= f.label :email %><br />
@@ -39,4 +45,7 @@
     
     <%= render "devise/shared/links" %>
   </div>
+
+</div>
+
 </div>
