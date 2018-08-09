@@ -2,7 +2,7 @@ class BoardsController < ApplicationController
   before_action :set_board, only: [:show, :edit, :update, :destroy]
 
   # GET /boards
-  # GET /boards.json
+  # GET /boards.jsonc
   def index
   #  @boards = Board.all
     if user_signed_in?
