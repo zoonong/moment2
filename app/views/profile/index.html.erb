@@ -1,0 +1,21 @@
+<div class = "intro">
+<!-- model:profile 안에 image를 넣어야함-->    
+    <%= image_tag(@profile.image_url) %>
+    <%= @profile.introduction %>
+    <!-- 하는 게임-->
+    <!-- 팔로우-->
+    <!-- 설정-->
+    <%= link_to "설정", "/profiles/edit"%>
+    
+</div>
+
+<!-- 게시판 만드는 곳-->
+<div class="profileboard">
+        <div class="pbcontent">
+            <%= link_to '보기', 'board' %>
+            <%= link_to '수정', 'edit_board_path(board)' %>
+            <%= link_to '삭제', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+</div>
+
+<div><%= link_to '글작성하기', 'URL' %></div>

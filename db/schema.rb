@@ -11,32 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180808115750) do
-
+ActiveRecord::Schema.define(version: 20180809154504) do
 
   create_table "boards", force: :cascade do |t|
-    t.text     "description"
-    t.string   "picture"
-    t.integer  "hit"
-    t.string   "user"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_id"
-    t.integer  "category_id"
-
-  end
-
-  add_index "boards", ["category_id"], name: "index_boards_on_category_id"
-  add_index "boards", ["user_id"], name: "index_boards_on_user_id"
-
-  create_table "categories", force: :cascade do |t|
-    t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "title"
+    t.string   "user_name"
+    t.text     "content"
   end
-
-  add_index "boards", ["category_id"], name: "index_boards_on_category_id"
-  add_index "boards", ["user_id"], name: "index_boards_on_user_id"
 
   create_table "categories", force: :cascade do |t|
     t.string   "name"
@@ -54,6 +37,15 @@ ActiveRecord::Schema.define(version: 20180808115750) do
 
   add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
+  create_table "plays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "plays", ["category_id"], name: "index_plays_on_category_id"
+  add_index "plays", ["user_id"], name: "index_plays_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.string   "title"
@@ -64,16 +56,12 @@ ActiveRecord::Schema.define(version: 20180808115750) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.text     "description"
-    t.string   "picture"
-    t.integer  "hit"
-    t.string   "user"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "category_id"
+    t.string   "title"
+    t.text     "content"
+    t.string   "user_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
-  add_index "profiles", ["category_id"], name: "index_profiles_on_category_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

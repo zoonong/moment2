@@ -1,3 +1,6 @@
+코드 여기 잠깐 저장
+
+
 <p id="notice"><%= notice %></p>
 
 <h1>[상단 네브바]</h1>
@@ -9,38 +12,39 @@
     <div class="grid-box d">설정</div>
     <div class="grid-box e">하는 게임</div>
   </div>
-
-<h1>[--JQuery Tab Here-- 제이쿼리 탭 넣는 자리]</h1>
+  
+<h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
 
   <div class="box-container">
     <div class="row">
-        <% @profiles.each do |profile| %>
+        <% @boards.each do |board| %>
             <div class="col m4 l4">
                 <div class="box">
-                  <img class="image" src="<%= profile.picture %>">
+                  <img class="image" src="<%= board.picture %>">
                       <div class="padding">
                         <div class="buttons">
-                          <%= link_to 'show', profile %>
-                          <%= link_to 'edit', edit_profile_path(profile) %>
-                          <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <%= link_to 'show', board %>
+                          <% if user_signed_in? && current_user.id == board.user_id %>
+                            <%= link_to 'edit', edit_board_path(board) %>
+                            <%= link_to 'delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
+                          <% end %>
                         </div>
                         
                         <div class="hit">
-                          게임 이름
+                          조회 <%= board.hit %>회 / 코멘트랑 좋아요 기능
                         </div>
-                        <%= profile.description %>
+                        <%= board.description %>
                       </div>
                 </div>
             </div>
         <% end %>
     </div>
-
   </div>
 
 <br>
-  
-<%= link_to 'New Profile', new_profile_path %>
-<%= link_to "홈으로", root_path %>
+
+<%= link_to 'New board', new_board_path %>
+
 
 <style>
     body {
@@ -74,7 +78,7 @@
     .box .buttons{
       font-size: 2em;
     }
-  
+
     .box .buttons .glyphicon{
       color: black;
       margin-right: 0.3em;
@@ -96,9 +100,9 @@
       font-weight: bold;
       margin-bottom: 0.5em;
     }
-  
-  
-  
+
+
+
     .grid {
       display: grid;
       grid-template: 1fr 1fr / 2fr 6fr 1fr 1fr;
@@ -138,5 +142,4 @@
       grid-column-start: 2;
       grid-column-end: 5;
     }
-    
-  </style>
+</style>

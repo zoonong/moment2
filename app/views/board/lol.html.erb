@@ -1,0 +1,42 @@
+<h1>[상단 네브바]</h1>
+
+  <div class="grid">
+    <div class="grid-box a">프로필 사진</div>
+    <div class="grid-box b">자기소개</div>
+    <div class="grid-box c">팔로우</div>
+    <div class="grid-box d">설정</div>
+    <div class="grid-box e">하는 게임</div>
+  </div>
+  
+<h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
+
+<h1> Lol 페이지</h1>
+
+  <div class="box-container">
+    <div class="row">
+        <% @lols.each do |lol| %>
+            <div class="col m4 l4">
+                <div class="box">
+                  <img class="image" src="<%= lol.picture %>">
+                    <div class="padding">
+                        <div class="buttons">
+                            <%= link_to '프로필 화면', 'URL' %>
+                            <%= link_to '수정', edit_board_path(lol) %>
+                            <%= link_to '삭제', lol, method: :delete, data: { confirm: '진짜 삭제?' } %>
+                             <% end %>
+                        </div>
+                        
+                        <div class="hit">
+                          조회 <%= lol.hit %>회 / 코멘트랑 좋아요 기능
+                        </div>
+                        <%= lol.description %>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
+  </div>
+  
+<br>
+
+<%= link_to 'New board', new_board_path %>
