@@ -1,14 +1,4 @@
-    <!--div class = "intro">
-<!-- model:profile 안에 image를 넣어야함
-    <!--%= image_tag(@profile.image_url) %>
-    <!-- %= @profile.introduction %>
-    <!-- 하는 게임-->
-    <!-- 팔로우-->
-    <!-- 설정-->
-    <!-- %= link_to "설정", "/profiles/edit2"%>
-    
-</div>-->
-
+<h1>board/index입니다</h1>
 <h1>[상단 네브바]</h1>
 
   <div class="grid">
@@ -20,23 +10,25 @@
   </div>
   
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-<a href="/profile/<%= current_user.id %>">사진첩 탭으로 이동</a>
-<a href="/profile/<%= current_user.id %>/new">사진첩 만들기</a>
+
+<% if current_user.id == @bo.user_id %>
+<a href="/board/<%= @temp %>/new">게시글 쓰는 곳</a>
+<% end %>
+
 
 <!-- 사진첩 만드는 곳-->
 <div class="box-container">
     <div class="row">
-        <% @profile.each do |profile| %>
+        <% @board.each do |board| %>
             <div class="col m4 l4">
                 <div class="box">
-                <!--img class="image" src="<!%= profile.picture %>">-->
+                <!--img class="image" src="<!%= board.picture %>">-->
                     <div class="padding">
                         <div class="buttons">
-                            <!--%= link_to 'show', profile %-->
-                            <a href="/board/<%= profile.id %>">보기</a>
-                            <% if user_signed_in? && current_user.id == profile.user_id %>
-                            <%= link_to 'edit', edit2_profile_path(profile) %>
-                            <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <a href="/board/show/<%= board.id %>">보기</a>
+                            <% if user_signed_in? && current_user.id == @bo.user_id %>
+                            <%= link_to 'edit', edit_board_path(board) %>
+                            <%= link_to 'delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
                             <% end %>
                         </div>
                     </div>

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get 'board/:profile_id' => 'board#index'
   get 'board/:profile_id/new' => 'board#new'
   post 'board/:profile_id/create' => 'board#create', as: 'create_board'
+  get 'board/edit/:id' => 'board#edit'
+  post 'board/update/:id' => 'board#update'
   get 'board/show/:id' => 'board#show'
   resources :board
   

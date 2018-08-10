@@ -1,50 +1,59 @@
 class BoardController < ApplicationController
     
-    def show
-        #한 개의 게시글을 보여주는 뷰
+    def index
+        @board = Board.where(profile_id:params[:profile_id])
+        @bo = Profile.find(params[:profile_id])
+        @temp = params[:profile_id]
     end
     
     def new
+        @temp = params[:profile_id]
+    end
+ 
+    def create
         @board = Board.new
-    #    @categories = Category.all.map { |cat| [cat.name, cat.id] } new.html에 코드 추가해야함
+        @board.profile_id = params[:profile_id]
+        @board.title = params[:title]
+        @board.content = params[:content]
+        @board.save
+        @boardid = @board.profile_id
+        redirect_to "/board/#{@boardid}"
     end
     
     def edit
-        #게임별 category_id 나눠서 if문 사용
-        @board = Board.find(params[:board_id])
-    #    @categories = Category.all.map { |cat| [cat.name, cat.id] } edit.html에 코드 추가해야함
+        @board = Board.find(params[:id])
     end
     
-    def create
-        @board = Board.new
-        @board.title = params[:board][:title]
-        @board.content = params[:board][:content]
-    #    @board.category_id = params[:category_id]
+    def update
+        @board = Board.find(params[:id])
+        @board.title = params[:title]
+        @board.content = params[:content]
         @board.save
-        redirect_to "/board/show/#{@board.id}"
-        #redirect에 게임별 category_id 나눠서 if문 사용
+        @board.profile_id = params[:profile_id]
+        @boardid = @board.profile_id
+        redirect_to "/board/#{@boardid}"
     end
-    
-    def delete
-        @board = Board.find(params[:board_id])
+
+    def show
+        @board = Board.find(params[:id])
+    #    @temp = @board.profile.user_id
+    end
+
+    def destroy
+        @board = Board.find(params[:id])
         @board.destroy
-        redirect_to '/'
-       #redirect에 게임별 category_id 나눠서 if문 사용
+        redirect_to(:back)
     end
 
 # ---------------
 
     def lol
-        #모든 롤 카테고리의 포스트를 보여주는 뷰 (롤의 category_id = 1로 가정)
-    #    @lol = Category.find(params[:1])
-    #    @lolposts = @lol.posts
+        #모든 롤 카테고리의 포스트를 보여주는 뷰
     end
     
 
     def maple
-        #모든 메이플 카테고리의 포스트를 보여주는 뷰 (메이플의 category_id = 2로 가정)
-    #    @maple = Category.find(params[:2])
-    #    @mapleposts = @maple.posts
+        #모든 메이플 카테고리의 포스트를 보여주는 뷰
     end
     
 end
