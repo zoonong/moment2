@@ -25,7 +25,7 @@ class BoardController < ApplicationController
         #redirect에 게임별 category_id 나눠서 if문 사용
     end
     
-    def destroy
+    def delete
         @board = Board.find(params[:board_id])
         @board.destroy
         redirect_to '/'

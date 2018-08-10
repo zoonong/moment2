@@ -14,7 +14,8 @@ class ProfileController < ApplicationController
         @profile.user_id= params[:user_id]
         @profile.category_id = params[:category_id]
         @profile.save
-        redirect_to "/profile/show/#{@profile.id}"
+        @userid = current_user.id
+        redirect_to "/profile/#{@userid}"
     end
 
     def edit2
@@ -23,11 +24,11 @@ class ProfileController < ApplicationController
     
     def update
         @profile = Profile.find(params[:id])
-        @profile.title = params[:title]
         @profile.user_name = params[:user_name]
         @profile.category_id = params[:category_id]
         @profile.save
-        redirect_to "profile/index"
+        @userid = current_user.id
+        redirect_to "/profile/#{@userid}"
     end
     
     def show
@@ -35,9 +36,9 @@ class ProfileController < ApplicationController
         @temp = params[:user_id]
     end
     
-    def delete
+    def destroy
         @profile = Profile.find(params[:id])
-        @profile.delete
-        redirect_to "profile/index"
+        @profile.destroy
+        redirect_to(:back)
     end
 end

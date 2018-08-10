@@ -1,13 +1,17 @@
 <h1>사진첩 생성 페이지</h1>
 
-<%= form_for(Profile.new, url: "create_profile_path", method: 'post') do |f| %>
+<%= form_for(Profile.new, url: create_profile_path, method: 'post') do |f| %>
 
     <%= f.label :category %><br>
     <%= select_tag(:category_id, options_for_select(@categories) )%><br>
 
-    <%= f.label :title, "글 제목" %>
-    <%= f.text_field :title %><br>
-
     <%= f.submit "제출" %>
     
 <% end %>
+
+<!-- Materialize 때문에 Category 안보이는거 방지 -->
+<style>
+    select{
+ display: block;
+}
+</style>

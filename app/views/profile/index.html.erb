@@ -7,20 +7,32 @@
     <!-- 설정-->
     <!-- %= link_to "설정", "/profiles/edit2"%>
     
-</div>
+</div>-->
 
-<!-- 게시판 만드는 곳-->
+<h1>[상단 네브바]</h1>
+
+  <div class="grid">
+    <div class="grid-box a">프로필 사진</div>
+    <div class="grid-box b">자기소개</div>
+    <div class="grid-box c">팔로우</div>
+    <div class="grid-box d">설정</div>
+    <div class="grid-box e">하는 게임</div>
+  </div>
+  
+<h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
+<a href="/profile/<%= current_user.id %>/new">사진첩 만들기</a>
+
+<!-- 사진첩 만드는 곳-->
 <div class="box-container">
     <div class="row">
-        <%= link_to '글쓰기', new_profile_path %>
-        <a href="/profile/<%= current_user.id %>/new">111</a>
         <% @profile.each do |profile| %>
             <div class="col m4 l4">
                 <div class="box">
-                <img class="image" src="<%= profile.picture %>">
+                <!--img class="image" src="<!%= profile.picture %>">-->
                     <div class="padding">
                         <div class="buttons">
-                            <%= link_to 'show', profile %>
+                            <!--%= link_to 'show', profile %-->
+                            <a href="/boards/<%= profile.id %>">보기</a>
                             <% if user_signed_in? && current_user.id == profile.user_id %>
                             <%= link_to 'edit', edit2_profile_path(profile) %>
                             <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>

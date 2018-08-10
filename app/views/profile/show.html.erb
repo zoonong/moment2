@@ -3,7 +3,6 @@
         <div class="panel panel-default">
             <div class="panel-heading">
               <%= @profile.category.name %>
-             작성자 : <%= @profile.user.email %>
             </div>
         </div>
         <% if current_user.id == @temp.to_i %>
