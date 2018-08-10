@@ -1,21 +1,136 @@
-<div class = "intro">
-<!-- model:profile 안에 image를 넣어야함-->    
-    <%= image_tag(@profile.image_url) %>
-    <%= @profile.introduction %>
+    <!--div class = "intro">
+<!-- model:profile 안에 image를 넣어야함
+    <!--%= image_tag(@profile.image_url) %>
+    <!-- %= @profile.introduction %>
     <!-- 하는 게임-->
     <!-- 팔로우-->
     <!-- 설정-->
-    <%= link_to "설정", "/profiles/edit"%>
+    <!-- %= link_to "설정", "/profiles/edit2"%>
     
 </div>
 
 <!-- 게시판 만드는 곳-->
-<div class="profileboard">
-        <div class="pbcontent">
-            <%= link_to '보기', 'board' %>
-            <%= link_to '수정', 'edit_board_path(board)' %>
-            <%= link_to '삭제', board, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </div>
+<div class="box-container">
+    <div class="row">
+        <%= link_to '글쓰기', new_profile_path %>
+        <a href="/profile/<%= current_user.id %>/new">111</a>
+        <% @profile.each do |profile| %>
+            <div class="col m4 l4">
+                <div class="box">
+                <img class="image" src="<%= profile.picture %>">
+                    <div class="padding">
+                        <div class="buttons">
+                            <%= link_to 'show', profile %>
+                            <% if user_signed_in? && current_user.id == profile.user_id %>
+                            <%= link_to 'edit', edit2_profile_path(profile) %>
+                            <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <% end %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </div>
 
-<div><%= link_to '글작성하기', 'URL' %></div>
+<a href="/">홈으로</a>
+
+<!-- CSS -->
+
+ <style>
+    body {
+      background-color: #FAFAFA;
+    }
+    
+    a:hover {
+      background: none;
+    }
+    
+    .box-container {
+      text-align: center;
+    }
+    
+    .box {
+      display: inline-block;
+      background-color: white;
+      border-radius: 3px;
+      border-color: #E6E6E6;
+      border-style: solid;
+      border-width: 1px;
+      text-align: left;
+      margin-bottom: 30px;
+    }
+    
+    .box-mobile {
+      border: none;
+      margin-bottom: 0;
+    }
+    
+    .box .buttons{
+      font-size: 2em;
+    }
+
+    .box .buttons .glyphicon{
+      color: black;
+      margin-right: 0.3em;
+    }
+    
+    .box .padding {
+      padding-left: 1.5em;
+      padding-right: 1.5em;
+      margin-bottom: 1.5em;
+    }
+    
+    .box .image {
+      margin-top: 5em;
+      width: 100%;
+      margin-bottom: 1em;
+    }
+    
+    .box .hit {
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+
+
+
+    .grid {
+      display: grid;
+      grid-template: 1fr 1fr / 2fr 6fr 1fr 1fr;
+    }
+    
+    .grid .grid-box {
+      background-color: #FAFAFA;
+      color: black;
+      border-radius: 5px;
+      border: 2px dodgerblue solid;
+      grid-gap: 10px;
+    }
+    
+    .grid .a {
+      grid-row-start: 1;
+      grid-row-end: 3;
+    }
+    
+    .grid .b {
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    
+    .grid .c {
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    
+    .grid .d {
+      grid-row-start: 1;
+      grid-row-end: 2;
+    }
+    
+    .grid .e {
+      grid-row-start: 2;
+      grid-row-end: 3;
+      grid-column-start: 2;
+      grid-column-end: 5;
+    }
+</style>

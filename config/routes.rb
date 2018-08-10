@@ -1,23 +1,22 @@
 Rails.application.routes.draw do
   root "posts#index"
-  
   get '/posts/explore' => 'posts#explore' 
   get '/posts/intro'  => 'posts#intro'
   resources :posts
   
-  #Read
-  get 'profile/index'  =>  'profile#index'
-  get 'profile/edit' =>  'profile#edit'
+  get 'profile/:user_id' => 'profile#index', as: 'profile_index'
+  get 'profile/:user_id/new' => 'profile#new'
+  post 'profile/:user_id/create' => 'profile#create', as: 'profile_create'
+  get 'profile/edit2/:id' =>  'profile#edit2'
+  post 'profile/update/:id' => 'profile#update'
+  get 'profile/show/:id' => 'profile#show'
+  post 'profile/delete/:id' => 'profile#delete'
+  resources :profile
   
-  get 'board/lol' => 'board#lol'
-  #get 'board/:user_id/lol' => 'board#lol'
-  #get 'board/:user_id/overwatch'
-  #get 'board/:user_id/wow'
-  get 'board/new' => 'board#new'
-  #post 'board/create' => 'board#create',as: 'create_board'
-  #get 'board/edit/:board_id'
-  #post 'board/update/:board_id' => 'board#update'
-  #post 'board/destroy/:board_id' => 'board#destroy'
+  get 'board/:profile_id' => 'board#index'
+  get 'board/:profile_id/new' => 'board#new'
+  post 'board/:profile_id/create' => 'board#create', as: 'create_board'
+  get 'board/show/:id' => 'board#show'
   resources :board
   
   resources :categories, only: [:show]

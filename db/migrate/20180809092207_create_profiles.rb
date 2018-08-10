@@ -1,10 +1,9 @@
 class CreateProfiles < ActiveRecord::Migration
   def change
     create_table :profiles do |t|
-      t.string :title
-      t.text :content
-      t.string :user_name
-      
+      t.references :user, index: true, foreign_key: true
+      t.references :category, index: true, foreign_key: true
+
       t.timestamps null: false
     end
   end

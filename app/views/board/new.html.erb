@@ -1,0 +1,19 @@
+<h1>게시물 입력 페이지</h1>
+
+<%= form_for(Board.new, url: "create_board_path", method: 'post') do |f| %>
+
+    <%= f.label :category %><br>
+    <%= select_tag(:category_id, options_for_select(@categories) )%><br>
+
+    <%= f.label :title, "글 제목" %>
+    <%= f.text_field :title %><br>
+    <!-- placeholder는 어떻게 써야 하는가... -->
+    <%= f.lebel :user_name, "작성자 이름" %>
+    <%= f.text_field :user_name %><br>
+    
+    <%= f.lebel :content, "글 내용", rows: "3" %>
+    <%= f.text_area :content %><br>
+    
+    <%= f.submit "제출" %>
+    
+<% end %>
