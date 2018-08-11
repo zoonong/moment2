@@ -6,11 +6,13 @@ Rails.application.routes.draw do
   
   get 'profile/:user_id' => 'profile#index', as: 'profile_index'
   get 'profile/:user_id/new' => 'profile#new'
+  get 'profile/:user_id/album' => 'profile#album'
   post 'profile/:user_id/create' => 'profile#create', as: 'create_profile'
   get 'profile/edit2/:id' =>  'profile#edit2', as: 'edit2_profile'
   post 'profile/update/:id' => 'profile#update'
   get 'profile/show/:id' => 'profile#show'
   post 'profile/delete/:id' => 'profile#delete', as: 'delete_profile'
+  
   resources :profile
   
   get 'board/:profile_id' => 'board#index'
@@ -20,7 +22,7 @@ Rails.application.routes.draw do
   post 'board/update/:id' => 'board#update'
   get 'board/show/:id' => 'board#show'
   resources :board
-  ..
+
   resources :categories, only: [:show]
   
   # omniauth : for SNS(facebook) login

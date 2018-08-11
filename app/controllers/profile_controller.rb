@@ -2,7 +2,10 @@ class ProfileController < ApplicationController
     
     def index
         @profile = Profile.where(user_id:params[:user_id])
-        @temp = params[:user_id]
+    end
+    
+    def album
+        @profile = Profile.where(user_id:params[:user_id])
     end
     
     def new

@@ -22,10 +22,9 @@
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
 <a href="/profile/<%= current_user.id %>">프로필 메인으로 이동</a>
 <a href="/profile/<%= current_user.id %>/album">사진첩 탭으로 이동</a>
-<% if user_signed_in? && current_user.id == @profile.first.user_id %>
-<a href="/profile/<%= current_user.id %>/new">사진첩 만들기</a>
-<% end %>
+<h2>전체게시물</h2>
 
+<h2>여기는 album임</h2>
 
 <!-- 사진첩 만드는 곳-->
 <div class="box-container">

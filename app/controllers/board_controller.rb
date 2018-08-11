@@ -13,8 +13,8 @@ class BoardController < ApplicationController
     def create
         @board = Board.new
         @board.profile_id = params[:profile_id]
-        @board.title = params[:title]
-        @board.content = params[:content]
+        @board.title = params[:board][:title]
+        @board.content = params[:board][:content]
         @board.save
         @boardid = @board.profile_id
         redirect_to "/board/#{@boardid}"
@@ -26,8 +26,8 @@ class BoardController < ApplicationController
     
     def update
         @board = Board.find(params[:id])
-        @board.title = params[:title]
-        @board.content = params[:content]
+        @board.title = params[:board][:title]
+        @board.content = params[:board][:content]
         @board.save
         @board.profile_id = params[:profile_id]
         @boardid = @board.profile_id

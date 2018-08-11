@@ -26,7 +26,7 @@
           </li>
           <!-- 마이페이지 -->
           <li>
-            <%= link_to "마이페이지", "/profile" %>
+            <%= link_to "마이페이지", profile_index_path(current_user.id) %>
           </li>
           <!-- 친구목록 -->
           <li>

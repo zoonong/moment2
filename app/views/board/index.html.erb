@@ -10,9 +10,10 @@
   </div>
   
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-
+<a href="/profile">프로필 메인으로 이동</a>
+<a href="/profile/<%= current_user.id %>">사진첩 탭으로 이동</a>
 <% if current_user.id == @bo.user_id %>
-<a href="/board/<%= @temp %>/new">게시글 쓰는 곳</a>
+<a href="/board/<%= @temp %>/new">게시글 쓰기</a>
 <% end %>
 
 
