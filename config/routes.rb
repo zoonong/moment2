@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   post 'board/update/:id' => 'board#update'
   get 'board/show/:id' => 'board#show'
   resources :board
-  
+  ..
   resources :categories, only: [:show]
   
   # omniauth : for SNS(facebook) login
