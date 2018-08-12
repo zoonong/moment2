@@ -1,11 +1,20 @@
 class ProfileController < ApplicationController
     
     def index
-        @profile = Profile.where(user_id:params[:user_id])
+        @profile = Profile.where(user_id: params[:user_id])
+        @board = Board.where(profile_id: params[:profile_id])
+        @pro = Profile.find(params[:profile_id])
+        @temp = params[:profile_id]
+     #   @profile_user = Profile.find(params[:user_id])
     end
     
     def album
-        @profile = Profile.where(user_id:params[:user_id])
+        #유저가 게시한 모든 게시물 표시
+    end
+    
+    def mypage
+        @profile = Profile.where(user_id: params[:user_id])
+        @profile_user = (params[:user_id]).to_i
     end
     
     def new
@@ -18,7 +27,7 @@ class ProfileController < ApplicationController
         @profile.category_id = params[:category_id]
         @profile.save
         @userid = current_user.id
-        redirect_to "/profile/#{@userid}"
+        redirect_to "/profile/mypage/#{@userid}"
     end
 
     def edit2
@@ -27,11 +36,10 @@ class ProfileController < ApplicationController
     
     def update
         @profile = Profile.find(params[:id])
-        @profile.user_name = params[:user_name]
         @profile.category_id = params[:category_id]
         @profile.save
         @userid = current_user.id
-        redirect_to "/profile/#{@userid}"
+        redirect_to "/profile/mypage/#{@userid}"
     end
     
     def show

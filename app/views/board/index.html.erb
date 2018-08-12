@@ -1,4 +1,3 @@
-<h1>board/index입니다</h1>
 <h1>[상단 네브바]</h1>
 
   <div class="grid">
@@ -10,36 +9,24 @@
   </div>
   
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-<a href="/profile">프로필 메인으로 이동</a>
-<a href="/profile/<%= current_user.id %>">사진첩 탭으로 이동</a>
-<% if current_user.id == @bo.user_id %>
+<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+<% if user_signed_in? && current_user.id == @board_user %> <!-- 이거 안됨 -->
 <a href="/board/<%= @temp %>/new">게시글 쓰기</a>
 <% end %>
 
+<h2><%= @bo.id %>번 게시물 입니다</h2>
 
-<!-- 사진첩 만드는 곳-->
-<div class="box-container">
-    <div class="row">
-        <% @board.each do |board| %>
-            <div class="col m4 l4">
-                <div class="box">
-                <!--img class="image" src="<!%= board.picture %>">-->
-                    <div class="padding">
-                        <div class="buttons">
-                            <a href="/board/show/<%= board.id %>">보기</a>
-                            <% if user_signed_in? && current_user.id == @bo.user_id %>
-                            <%= link_to 'edit', edit_board_path(board) %>
-                            <%= link_to 'delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
-                            <% end %>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% end %>
-    </div>
+<!-- 게시물 클릭 시 인스타 게시물 클릭 한 것 처럼 뜨게 하는 곳-->
+
+<div>
+    <div>제목: <%= @bo.title %></div>
+    <div>내용: <%= @bo.content %></div>
+    <div>like, comment</div>
 </div>
 
-<a href="/">홈으로</a>
+<a href="#" onclick="history.go(-1)">뒤로가기</a>
+
 
 <!-- CSS -->
 

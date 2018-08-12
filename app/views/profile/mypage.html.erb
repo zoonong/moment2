@@ -20,10 +20,14 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
-<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a> <!-- 다른 사람 페이지 가서 눌렀을 때 current user 말고 그 사람 id 오게 하기.... -->
 <a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+<% if user_signed_in? && current_user.id == @profile_user  %>
+  <a href="/profile/<%= current_user.id %>/new">앨범 만들기</a>
+<% end %>
 
-<h2>유저가 포스트한 모든 게시물</h2>
+<h3>user_id <%= @profile_user %>의 마이페이지</h3>
+<h4>아래는 사진첩</h4>
 
 <!-- 사진첩 만드는 곳-->
 <div class="box-container">
@@ -35,7 +39,7 @@
                     <div class="padding">
                         <div class="buttons">
                             <!--%= link_to 'show', profile %-->
-                            <a href="/board/<%= profile.id %>">보기</a>
+                            <a href="/profile/<%= profile.id %>">보기</a>
                             <% if user_signed_in? && current_user.id == profile.user_id %>
                             <%= link_to 'edit', edit2_profile_path(profile) %>
                             <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>

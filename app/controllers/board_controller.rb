@@ -1,12 +1,15 @@
 class BoardController < ApplicationController
     
     def index
-        @board = Board.where(profile_id:params[:profile_id])
-        @bo = Profile.find(params[:profile_id])
+        @board = Board.where(profile_id: params[:user_id])
+        @board_user = (params[:user_id])
+        @bo = Board.find(params[:id])
         @temp = params[:profile_id]
+        
     end
     
     def new
+        @board = Board.new
         @temp = params[:profile_id]
     end
  
@@ -16,8 +19,8 @@ class BoardController < ApplicationController
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
         @board.save
-        @boardid = @board.profile_id
-        redirect_to "/board/#{@boardid}"
+        
+        redirect_to 
     end
     
     def edit
@@ -30,8 +33,8 @@ class BoardController < ApplicationController
         @board.content = params[:board][:content]
         @board.save
         @board.profile_id = params[:profile_id]
-        @boardid = @board.profile_id
-        redirect_to "/board/#{@boardid}"
+        
+        redirect_to 
     end
 
     def show

@@ -20,27 +20,26 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
-<a href="/profile/<%= current_user.id %>">프로필 메인으로 이동</a>
-<a href="/profile/<%= current_user.id %>/album">사진첩 탭으로 이동</a>
-<% if user_signed_in? && current_user.id == @profile.first.user_id %>
-<a href="/profile/<%= current_user.id %>/new">사진첩 만들기</a>
+<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+<% if user_signed_in? && current_user.id == @pro.user_id %>
+<a href="/board/<%= @temp %>/new">게시물 만들기</a>
 <% end %>
 
+<h3><%= @temp %>번 사진첩의 게시물</h3>
 
-<!-- 사진첩 만드는 곳-->
 <div class="box-container">
     <div class="row">
-        <% @profile.each do |profile| %>
+        <% @board.each do |board| %>
             <div class="col m4 l4">
                 <div class="box">
-                <!--img class="image" src="<!%= profile.picture %>">-->
+                <!--img class="image" src="<!%= board.picture %>">-->
                     <div class="padding">
                         <div class="buttons">
-                            <!--%= link_to 'show', profile %-->
-                            <a href="/board/<%= profile.id %>">보기</a>
-                            <% if user_signed_in? && current_user.id == profile.user_id %>
-                            <%= link_to 'edit', edit2_profile_path(profile) %>
-                            <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
+                            <a href="/board/<%= board.id %>">보기</a>
+                            <% if user_signed_in? && current_user.id == @pro.user_id %>
+                            <a href="/board/edit/<%= board.id %>">수정</a>
+                            <%= link_to 'delete', board, method: :delete, data: { confirm: 'Are you sure?' } %>
                             <% end %>
                         </div>
                     </div>
