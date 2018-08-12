@@ -7,7 +7,6 @@ gem 'omniauth-naver'
 
 gem 'figaro'
 
-gem 'bootstrap-sass', '~> 3.3.7'
 gem 'carrierwave'
 gem "rails_db", "1.6"
 gem 'devise'

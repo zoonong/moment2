@@ -5,7 +5,6 @@ class BoardController < ApplicationController
         @board_user = (params[:user_id])
         @bo = Board.find(params[:id])
         @temp = params[:profile_id]
-        
     end
     
     def new
@@ -32,14 +31,8 @@ class BoardController < ApplicationController
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
         @board.save
-        @board.profile_id = params[:profile_id]
-        
-        redirect_to 
-    end
-
-    def show
-        @board = Board.find(params[:id])
-    #    @temp = @board.profile.user_id
+        @pro = @board.profile_id
+        redirect_to "/profile/#{@pro}"
     end
 
     def destroy
