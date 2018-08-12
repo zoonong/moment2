@@ -9,6 +9,17 @@
     <%= f.label :content, "글 내용", rows: "3" %>
     <%= f.text_area :content %><br>
     
-    <%= f.submit "제출" %>
+    
+  <!-- Hashtag 입력창 / 출력창 넣기! -->
+  <ul>
+    <%= f.fields_for :hashtags do |h|%>
+    <li>
+      <%= h.label :title, "해시태그" %>
+      <%= h.text_field :title %>
+    </li>
+    <%end%>
+  </ul>
+  
+  <%= f.submit "제출" %>
     
 <% end %>
