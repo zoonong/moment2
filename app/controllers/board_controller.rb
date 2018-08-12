@@ -5,7 +5,6 @@ class BoardController < ApplicationController
         @board_user = (params[:user_id])
         @bo = Board.find(params[:id])
         @temp = params[:profile_id]
-        
     end
     
     def new
@@ -33,16 +32,11 @@ class BoardController < ApplicationController
           
           @board.hashtags << myHash
         end
-        
-        respond_to do |format|
-          if @board.save
-            format.html { redirect_to posts_path, notice:"게시물이 성공적으로 작성되었습니다."}
-            format.json { render :show, status: :created, location: @board }
-          else
-            format.html { render :new }
-            format.json { render json: @board.errors , status: :unprocessable_entity }
-          end
-        end 
+  
+        @board.save
+        @pro = @board.profile_id
+        redirect_to "/profile/#{@pro}"
+
     end
     
     def edit
@@ -54,14 +48,8 @@ class BoardController < ApplicationController
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
         @board.save
-        @board.profile_id = params[:profile_id]
-        
-        redirect_to 
-    end
-
-    def show
-        @board = Board.find(params[:id])
-    #    @temp = @board.profile.user_id
+        @pro = @board.profile_id
+        redirect_to "/profile/#{@pro}"
     end
 
     def destroy
