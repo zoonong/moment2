@@ -18,8 +18,8 @@ class BoardController < ApplicationController
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
         @board.save
-        
-        redirect_to 
+        @pro = @board.profile_id
+        redirect_to "/profile/#{@pro}"
     end
     
     def edit
