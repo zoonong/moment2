@@ -23,7 +23,10 @@ class PostsController < ApplicationController
     
     # 해시태그세번 입력하도록 설정
     # 동적으로 추가할 수 있도록 나중에 개선해보자
-    3.times { @post.hashtags.new }
+    
+    # 3.times { @post.hashtags.new }
+    # 오류발생--- 해시태그 하나만 추가하는걸로 바꿔보자 ( 180813 ) 
+    @post.hashtags.new
   end
 
   # GET /posts/1/edit
