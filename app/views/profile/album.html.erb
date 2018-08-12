@@ -9,7 +9,12 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
-<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+
+<% if current_user.id != @profile_user %>
+	<a href="/profile/mypage/<%= @profile_user %>">프로필 메인</a>
+<% else %>
+	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+<% end %>
 <a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
 
 <h2>유저가 포스트한 모든 게시물</h2>
@@ -17,7 +22,7 @@
 <!-- 사진첩 만드는 곳-->
 <div class="box-container">
     <div class="row">
-        <% @album.each do |album| %>
+        <% @board.each do |album| %>
             <div class="col m4 l4">
                 <div class="box">
                 <!--img class="image" src="<!%= profile.picture %>">-->
