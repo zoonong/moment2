@@ -9,7 +9,10 @@ class ProfileController < ApplicationController
     end
     
     def album
-        #유저가 게시한 모든 게시물 표시
+        #유저가 게시한 모든 게시물 표시 if current.user_id =
+        @album = Board.all
+
+        
     end
     
     def mypage
