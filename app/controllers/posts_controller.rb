@@ -24,9 +24,8 @@ class PostsController < ApplicationController
     # 해시태그세번 입력하도록 설정
     # 동적으로 추가할 수 있도록 나중에 개선해보자
     
-    # 3.times { @post.hashtags.new }
-    # 오류발생--- 해시태그 하나만 추가하는걸로 바꿔보자 ( 180813 ) 
-    @post.hashtags.new
+    3.times { @post.hashtags.new }
+   
   end
 
   # GET /posts/1/edit
@@ -42,24 +41,23 @@ class PostsController < ApplicationController
     3.times do |x|
       # 날아오는 params 중 hashtag 관련 params를 받아온다. 인썸니아 강의 12:52
       tag = hashtag_params[:hashtags_attributes]["#{x}"]["title"]
-      a = Hashtag.find_or_create_by(title: tag)
+      myHash = Hashtag.find_or_create_by(title: tag)
       
-      @post.hashtags << a
+      @post.hashtags << myHash
     end
     
     respond_to do |format|
-      if @post.save5
+      if @post.save
+        format.html { redirect_to posts_path, notice:"게시물이 성공적으로 작성되었습니다."}
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        format.json { render json: @post.errors , status: :unprocessable_entity }
       end
     end
   end
 
-  def hashtag_params
-    params.require(:post).permit(hashtags_attributes: [:title])
-  end
+
   
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
@@ -94,5 +92,9 @@ class PostsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
       params.require(:post).permit(:title, :content)
+    end
+    
+    def hashtag_params
+      params.require(:post).permit(hashtags_attributes: [:title])
     end
 end
