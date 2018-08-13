@@ -6,18 +6,18 @@
     <%= f.text_field :title, placeholder: "hello world" %><br>
     <!-- placeholder는 어떻게 써야 하는가... -->
     
-    <%= f.label :content, "글 내용", rows: "3" %>
+    <%= f.label :content, "글 내용"%>
     <%= f.text_area :content %><br>
     
     
-  <!-- Hashtag 입력창 / 출력창 넣기! -->
+  <!-- Hashtag 입력창 넣기! -->
   <ul>
     <%= f.fields_for :hashtags do |h|%>
-    <li>
-      <%= h.label :title, "해시태그" %>
-      <%= h.text_field :title %>
-    </li>
-    <%end%>
+      <li>
+        <%= h.label :title, "해시태그" %>
+        <%= h.text_field :title %>
+      </li>
+    <% end %>
   </ul>
   
   <%= f.submit "제출" %>
