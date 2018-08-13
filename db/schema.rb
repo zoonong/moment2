@@ -23,6 +23,11 @@ ActiveRecord::Schema.define(version: 20180813121002) do
 
   add_index "boards", ["profile_id"], name: "index_boards_on_profile_id"
 
+  create_table "boards_hashtags", id: false, force: :cascade do |t|
+    t.integer "board_id",   null: false
+    t.integer "hashtag_id", null: false
+  end
+
   create_table "categories", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false

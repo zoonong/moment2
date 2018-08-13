@@ -25,28 +25,39 @@
 
 <!-- 게시물 클릭 시 인스타 게시물 클릭 한 것 처럼 뜨게 하는 곳-->
 
-<div>
+
     <div>제목: <%= @bo.title %></div>
     <div>내용: <%= @bo.content %></div>
-    <div>
-      <% if current_user.is_like?(@bo) %>
-        <%= link_to "좋아요 취소", like_board_path(@bo), method: "POST" %>
-      <% else %>
-        <%= link_to "좋아요", like_board_path(@bo), method: "POST" %>
-      <% end %>
-    <div>
-      <% if user_signed_in?%>
-      <form action="/board/comments/<%= @bo.id %>" method="POST">
-        <input type="text" name="body">
-        <input type="submit">
-      </form>
-      <% else %>
-      <% @bo.comments.each do |comment| %>
-      <%= comment.body %><hr>
-      <% end %><% end %>
+
+    <div>해시태그:<br>
+     <% @bo.hashtags.each do |h| %>
+     <!-- 등록하지 않을경우 출력하지 않음-->
+       <% if h.title != "" %>
+         #<%= h.title %>
+       <% end %>
+     <% end %>
     </div>
+    <div>like, comment</div>
+
+    <div>
+        <% if current_user.is_like?(@bo) %>
+          <%= link_to "좋아요 취소", like_board_path(@bo), method: "POST" %>
+        <% else %>
+          <%= link_to "좋아요", like_board_path(@bo), method: "POST" %>
+        <% end %>
+      <div>
+        <% if user_signed_in?%>
+        <form action="/board/comments/<%= @bo.id %>" method="POST">
+          <input type="text" name="body">
+          <input type="submit">
+        </form>
+        <% else %>
+        <% @bo.comments.each do |comment| %>
+        <%= comment.body %><hr>
+        <% end %><% end %>
+      </div>
     
-</div>
+    </div>
 
 <a href="/profile/<%= @pro %>">뒤로가기</a>
 
