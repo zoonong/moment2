@@ -1,10 +1,7 @@
 class BoardController < ApplicationController
     
     def index
-        @board = Board.where(profile_id: params[:user_id])
-        @board_user = (params[:user_id])
         @bo = Board.find(params[:id])
-        @temp = params[:profile_id]
     end
     
     def new

@@ -20,14 +20,19 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
+
 <% if current_user.id != @profile_user %>
 	<a href="/profile/mypage/<%= @profile_user %>">프로필 메인</a>
+	<a href="/profile/<%= @profile_user %>/album">전체 게시물</a>
+	<a href="/profile/<%= @profile_user %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= @profile_user %>/tagged">태그됨</a>
 <% else %>
 	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
-<% end %> <!-- 다른 사람 페이지 가서 눌렀을 때 current user 말고 그 사람 id 오게 하기.... -->
-<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
-<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
-<a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
+	<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
+<% end %>
+
 <% if user_signed_in? && current_user.id == @profile_user  %>
   <a href="/profile/<%= current_user.id %>/new">앨범 만들기</a>
 <% end %>

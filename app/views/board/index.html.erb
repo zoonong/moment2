@@ -9,16 +9,16 @@
   </div>
   
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-<% if current_user.id != @board_user %>
-	<a href="/profile/mypage/<%= @board_user %>">프로필 메인</a>
+<% if current_user.id != @bo.profile.user.id %>
+	<a href="/profile/mypage/<%= @bo.profile.user.id %>">프로필 메인</a>
+	<a href="/profile/<%= @bo.profile.user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= @bo.profile.user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= @bo.profile.user.id %>/tagged">태그됨</a>
 <% else %>
 	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
-<% end %>
-<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
-<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
-<a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
-<% if user_signed_in? && current_user.id == @board_user %>
-<a href="/board/<%= @temp %>/new">게시글 쓰기</a>
+	<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
 <% end %>
 
 <h2><%= @bo.id %>번 게시물 입니다</h2>
