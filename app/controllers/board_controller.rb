@@ -5,6 +5,12 @@ class BoardController < ApplicationController
         @pro = @bo.profile_id
     end
     
+    def comments
+        @bo = Board.find(params[:id])
+        @bo.comments.create(body:params[:body])
+        redirect_to :back
+    end
+    
     def new
         @board = Board.new
         @temp = params[:profile_id]

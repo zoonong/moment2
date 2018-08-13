@@ -10,7 +10,6 @@ class ProfileController < ApplicationController
         @user = User.find(params[:user_id])
         @profile = Profile.find_by(user_id: @user.id)
         @board = Board.where(profile_id: @profile.id)
-        
     end
     
     def mypage

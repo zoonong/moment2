@@ -34,7 +34,17 @@
       <% else %>
         <%= link_to "좋아요", like_board_path(@bo), method: "POST" %>
       <% end %>
-    <div>comment</div>
+    <div>
+      <% if user_signed_in?%>
+      <form action="/board/comments/<%= @bo.id %>" method="POST">
+        <input type="text" name="body">
+        <input type="submit">
+      </form>
+      <% else %>
+      <% @bo.comments.each do |comment| %>
+      <%= comment.body %><hr>
+      <% end %><% end %>
+    </div>
     
 </div>
 
