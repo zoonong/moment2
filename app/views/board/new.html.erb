@@ -1,6 +1,6 @@
 <h1>게시물 입력 페이지</h1>
-
-<%= form_for(Board.new, url: create_board_path, method: 'post') do |f| %>
+<!-- form_for(Board.new , ) => form_for(@board ,) -->
+<%= form_for(@board, url: create_board_path, method: 'post') do |f| %>
 
     <%= f.label :title, "글 제목" %>
     <%= f.text_field :title, placeholder: "hello world" %><br>

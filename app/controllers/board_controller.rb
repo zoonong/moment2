@@ -71,7 +71,7 @@ class BoardController < ApplicationController
         #모든 메이플 카테고리의 포스트를 보여주는 뷰
     end
     
-     
+private
     def hashtag_params
       params.require(:board).permit(hashtags_attributes: [:title])
     end
