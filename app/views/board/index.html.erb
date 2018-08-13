@@ -9,19 +9,26 @@
   </div>
   
 <h1>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h1>
-<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
-<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
-<% if user_signed_in? && current_user.id == @board_user %> <!-- 이거 안됨 -->
-<a href="/board/<%= @temp %>/new">게시글 쓰기</a>
+<% if current_user.id != @bo.profile.user.id %>
+	<a href="/profile/mypage/<%= @bo.profile.user.id %>">프로필 메인</a>
+	<a href="/profile/<%= @bo.profile.user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= @bo.profile.user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= @bo.profile.user.id %>/tagged">태그됨</a>
+<% else %>
+	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+	<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
 <% end %>
 
 <h2><%= @bo.id %>번 게시물 입니다</h2>
 
 <!-- 게시물 클릭 시 인스타 게시물 클릭 한 것 처럼 뜨게 하는 곳-->
 
-<div>
+
     <div>제목: <%= @bo.title %></div>
     <div>내용: <%= @bo.content %></div>
+
     <div>해시태그:<br>
      <% @bo.hashtags.each do |h| %>
      <!-- 등록하지 않을경우 출력하지 않음-->
@@ -31,9 +38,28 @@
      <% end %>
     </div>
     <div>like, comment</div>
-</div>
 
-<a href="#" onclick="history.go(-1)">뒤로가기</a>
+    <div>
+        <% if current_user.is_like?(@bo) %>
+          <%= link_to "좋아요 취소", like_board_path(@bo), method: "POST" %>
+        <% else %>
+          <%= link_to "좋아요", like_board_path(@bo), method: "POST" %>
+        <% end %>
+      <div>
+        <% if user_signed_in?%>
+        <form action="/board/comments/<%= @bo.id %>" method="POST">
+          <input type="text" name="body">
+          <input type="submit">
+        </form>
+        <% else %>
+        <% @bo.comments.each do |comment| %>
+        <%= comment.body %><hr>
+        <% end %><% end %>
+      </div>
+    
+    </div>
+
+<a href="/profile/<%= @pro %>">뒤로가기</a>
 
 
 <!-- CSS -->

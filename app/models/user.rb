@@ -6,6 +6,13 @@ class User < ActiveRecord::Base
          :omniauthable
 
   has_many :boards
+  has_many :likes
+  has_many :liked_boards, through: :likes, source: :board
+  
+  #좋아요
+  def is_like?(board)
+    Like.find_by(user_id: self.id, board_id: board.id).present?
+  end
   
   # for SNS login       
   def self.find_for_oauth(auth, signed_in_resource = nil)

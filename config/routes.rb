@@ -20,6 +20,8 @@ Rails.application.routes.draw do
   post 'board/:profile_id/create' => 'board#create', as: 'create_board'
   get 'board/edit/:id' => 'board#edit'
   post 'board/update/:id' => 'board#update'
+  post 'board/:board_id/like', to: "likes#like_toggle", as: 'like_board'
+  post 'board/comments/:id' => 'board#comments'
   resources :board
 
   resources :categories, only: [:show]

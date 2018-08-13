@@ -1,14 +1,3 @@
-    <!--div class = "intro">
-<!-- model:profile 안에 image를 넣어야함
-    <!--%= image_tag(@profile.image_url) %>
-    <!-- %= @profile.introduction %>
-    <!-- 하는 게임-->
-    <!-- 팔로우-->
-    <!-- 설정-->
-    <!-- %= link_to "설정", "/profiles/edit2"%>
-    
-</div>-->
-
 <h1>[상단 네브바]</h1>
 
   <div class="grid">
@@ -20,26 +9,33 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
-<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
-<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
 
-<h2>유저가 포스트한 모든 게시물</h2>
+<% if current_user.id != @user.id %>
+	<a href="/profile/mypage/<%= @user.id %>">프로필 메인</a>
+	<a href="/profile/<%= @user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= @user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= @user.id %>/tagged">태그됨</a>
+<% else %>
+	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+	<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
+<% end %>
+
+<h2><%= @user.id %>번 유저가 포스트한 모든 게시물</h2>
 
 <!-- 사진첩 만드는 곳-->
 <div class="box-container">
     <div class="row">
-        <% @profile.each do |profile| %>
+        <% @board.each do |album| %>
             <div class="col m4 l4">
                 <div class="box">
                 <!--img class="image" src="<!%= profile.picture %>">-->
                     <div class="padding">
                         <div class="buttons">
-                            <!--%= link_to 'show', profile %-->
-                            <a href="/board/<%= profile.id %>">보기</a>
-                            <% if user_signed_in? && current_user.id == profile.user_id %>
-                            <%= link_to 'edit', edit2_profile_path(profile) %>
-                            <%= link_to 'delete', profile, method: :delete, data: { confirm: 'Are you sure?' } %>
-                            <% end %>
+                            <a href="/board/<%= album.id %>">보기</a>
+                            <a href="/board/edit/<%= album.id %>">수정</a>
+                            <%= link_to 'delete', album, method: :delete, data: { confirm: 'Are you sure?' } %>
                         </div>
                     </div>
                 </div>

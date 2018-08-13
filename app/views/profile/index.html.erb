@@ -20,10 +20,18 @@
   </div>
   
 <h2>[JQuery Tab Here 제이쿼리 탭 넣는 자리]</h2>
-<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
-<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
-<% if user_signed_in? && current_user.id == @pro.user_id %>
-<a href="/board/<%= @temp %>/new">게시물 만들기</a>
+
+<% if current_user.id != @pro.user_id %>
+	<a href="/profile/mypage/<%= @pro.user_id %>">프로필 메인</a>
+	<a href="/profile/<%= @pro.user_id %>/album">전체 게시물</a>
+	<a href="/profile/<%= @pro.user_id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= @pro.user_id %>/tagged">태그됨</a>
+<% else %>
+	<a href="/profile/mypage/<%= current_user.id %>">프로필 메인</a>
+	<a href="/profile/<%= current_user.id %>/album">전체 게시물</a>
+	<a href="/profile/<%= current_user.id %>/saved">즐겨찾기</a>
+  <a href="/profile/<%= current_user.id %>/tagged">태그됨</a>
+  <a href="/board/<%= @pro.id %>/new">글쓰기</a>
 <% end %>
 
 <h3><%= @temp %>번 사진첩의 게시물</h3>
