@@ -28,10 +28,17 @@
 <div>
     <div>제목: <%= @bo.title %></div>
     <div>내용: <%= @bo.content %></div>
-    <div>like, comment</div>
+    <div>
+      <% if current_user.is_like?(@bo) %>
+        <%= link_to "좋아요 취소", like_board_path(@bo), method: "POST" %>
+      <% else %>
+        <%= link_to "좋아요", like_board_path(@bo), method: "POST" %>
+      <% end %>
+    <div>comment</div>
+    
 </div>
 
-<a href="#" onclick="history.go(-1)">뒤로가기</a>
+<a href="/profile/<%= @pro %>">뒤로가기</a>
 
 
 <!-- CSS -->

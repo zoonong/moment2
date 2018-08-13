@@ -2,6 +2,7 @@ class BoardController < ApplicationController
     
     def index
         @bo = Board.find(params[:id])
+        @pro = @bo.profile_id
     end
     
     def new
