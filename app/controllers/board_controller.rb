@@ -3,6 +3,7 @@ class BoardController < ApplicationController
     def index
         @bo = Board.find(params[:id])
         @pro = @bo.profile_id
+
     end
     
     def comments
@@ -20,11 +21,10 @@ class BoardController < ApplicationController
     end
  
     def create
-        @board = Board.new
+        @board = Board.new(board_params)
         @board.profile_id = params[:profile_id]
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
-  
   
     # 해시태그 처리 (Board)
          3.times do |x|
@@ -71,8 +71,14 @@ class BoardController < ApplicationController
         #모든 메이플 카테고리의 포스트를 보여주는 뷰
     end
     
+    def board_params
+      params.require(:board).permit(:title, :contents, :image_url)
+    end
+    
 private
     def hashtag_params
       params.require(:board).permit(hashtags_attributes: [:title])
     end
+    
+   
 end

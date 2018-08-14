@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180813121002) do
+ActiveRecord::Schema.define(version: 20180813174855) do
 
   create_table "boards", force: :cascade do |t|
     t.integer  "profile_id"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20180813121002) do
     t.string   "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "image_url"
   end
 
   add_index "boards", ["profile_id"], name: "index_boards_on_profile_id"

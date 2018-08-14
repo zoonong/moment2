@@ -28,6 +28,12 @@
 
     <div>제목: <%= @bo.title %></div>
     <div>내용: <%= @bo.content %></div>
+    <div>
+      <strong>사진</strong><br>
+
+        <img src="<%= @bo.image_url %>">
+
+    </div>
 
     <div>
       <% if current_user.is_like?(@bo) %>
@@ -41,7 +47,7 @@
       <% if user_signed_in?%>
       <form action="/board/comments/<%= @bo.id %>" method="POST">
         <input type="text" name="body">
-        <input type="submit">
+       <!-- <input type="submit"> -->
       </form>
       <% end %>
       <% @bo.comments.each do |comment| %>
