@@ -9,6 +9,12 @@ class PostsController < ApplicationController
   end
   
   def index
+    # 나중에 쓸 검색 기능
+    if params[:search]
+      @boards = Board.search(params[:search])
+    else
+      @boards = Board.all
+    end
     @posts = Post.all.reverse
   end
 

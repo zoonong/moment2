@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/posts/intro'  => 'posts#intro'
   resources :posts
   
+  
   get 'profile/:profile_id' => 'profile#index', as: 'profile_index'
   get 'profile/:user_id/new' => 'profile#new'
   get 'profile/:user_id/album' => 'profile#album'
@@ -22,7 +23,16 @@ Rails.application.routes.draw do
   post 'board/update/:id' => 'board#update'
   post 'board/:board_id/like', to: "likes#like_toggle", as: 'like_board'
   post 'board/comments/:id' => 'board#comments'
+  get 'board/search' => 'board#search'
   resources :board
+  
+  # for Search
+  # resources :board do
+  #  collection do
+  #    get :search
+  #  end
+  # end
+  
 
   resources :categories, only: [:show]
   

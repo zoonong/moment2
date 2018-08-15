@@ -5,7 +5,17 @@ class Board < ActiveRecord::Base
     require 'carrierwave/orm/activerecord'
     mount_uploader :image_url, ImageUploader
     
-    # 준홍이의 취중코오딩
+    # validates_presence_of :title, :body
+    # searchable do
+    #    text :title, :body
+    # end
+    
+    def self.search(query)
+        self.where("title || content LIKE ?","%#{query}%")
+    end
+    
+    
+    # 준홍이의 취중코오딩 <- 송이가 한거
     has_and_belongs_to_many :hashtags
     accepts_nested_attributes_for :hashtags
 

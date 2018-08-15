@@ -50,11 +50,6 @@ ActiveRecord::Schema.define(version: 20180813174855) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "hashtags_posts", id: false, force: :cascade do |t|
-    t.integer "post_id",    null: false
-    t.integer "hashtag_id", null: false
-  end
-
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"

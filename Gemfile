@@ -5,6 +5,7 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-naver'
 
+
 gem 'figaro'
 
 gem 'carrierwave'

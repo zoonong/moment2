@@ -49,6 +49,7 @@ class BoardController < ApplicationController
         @board = Board.find(params[:id])
         @board.title = params[:board][:title]
         @board.content = params[:board][:content]
+        @board.image_url = params[:board][:image_url]
         @board.save
         @pro = @board.profile_id
         redirect_to "/profile/#{@pro}"
@@ -59,7 +60,18 @@ class BoardController < ApplicationController
         @board.destroy
         redirect_to(:back)
     end
-
+    
+    def search
+        @board = Board.search do
+            keywords params[:query]
+        end.results
+        
+        respond_to do |format|
+            format.html { render :action => "index" }
+            format.xml {render :xml => @board }
+        end
+    end
+    
 # ---------------
 
     def lol
